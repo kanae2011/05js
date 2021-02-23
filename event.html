@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS event 처리 </title>
+</head>
+<body onload="alert('로딩완료')"><!-- body 태그에 적용시켜서 문서 전체가 로딩이 되고 그 다음 동작을 하도록 정의 -->
+<div onclick="alert('클릭')">클릭하세요</div> <!-- click이 일어나면 동작이 되는 처리문을 저장해놓는 속성 -->
+<div onmouseover="alert('마우스 완료')">마우스 올리세요</div><!-- 커서가 닿으면 처리되는 동작을 정의 -->
+데이터 입력하세요<input onkeyup="alert('키보드 버튼이 눌리고 올라갔어요')"><br><!-- 데이터 입력이 완료된 상태에서 처리되는 동작을 정의 -->
+커서를 위치시키세요<input onfocus="alert('커서가 들어왔어요')"><br><!-- 커서가 들어오면 동작 정의 -->
+데이터를 바꾸세요
+<select onchange="alert('데이터 변경')">
+	<option>선택하세요</option>
+	<option>HTML</option>
+	<option>CSS</option>
+	<option>Java Script</option>
+	<option>jQUERY</option>
+</select>
+</body>
+</html>

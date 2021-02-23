@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>div 객체를 보이게 안보이게</title>
+<style type="text/css">
+	div{
+	width:400px;
+	height: 150px;
+	border: 1px solid #444;
+	display: none;
+	}
+	#div0{background:orange;display:block;}
+	#div1{background: green;}
+	#div2{background: yellow;}
+</style>
+
+<script type="text/javascript" src="util.js"></script>
+
+<script type="text/javascript">
+function showHide(index) {
+		var tags = selTag("div");
+		
+		//alert(tags);
+		//for문 이용해서 전체 안보이게 ->div
+		for(tag of tags){
+			tag.style.display = "none";
+		}
+		tags[index].style.display="block"; // 클릭한 버튼과 동일한 위치에 div를 보여줌 
+}
+</script>
+</head>
+<body>
+<h2>클릭 </h2>
+<button  id="orangeDiveBtn" onclick="showHide(0)">오렌지</button>
+<button  id="greenDivBtn" onclick="showHide(1)">초록</button>
+<button  id="yelloDivBtn" onclick="showHide(2)">노랑</button>
+<hr/>
+<div id="div0"></div>
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+</html>

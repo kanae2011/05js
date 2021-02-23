@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>버튼을 클릭하면 이동하는 박스 만들기</title>
+<style type="text/css">
+table {
+	font-size:1em;   /*1em:보통크기,em 배수*/
+	font-weight: 900;   /*글자의 두께:100~900*/
+	width:100px;  
+	text-align: center; /*테이블 안에 글자 가운데 정렬*/
+	margin: 0 auto; /*테이블 가운데 정렬*/
+}
+.moveBtn:hover{
+	background: black;
+	color: white;
+	cursor: pointer;
+}
+
+#moveDiv{
+	top: 150px;
+	left: 10px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	/*top 속성을 가져오면 150px -> 아래를 누르면 150px+10px => 160px : 150px -> 숫자 parseInt() + 10 + "px"
+		top의 범위 : 150px ~300px / left의 범위 :10px ~ 500px 
+	*/
+	background: orange;
+}
+</style>
+<script type="text/javascript" src="util.js"></script>
+
+<script type="text/javascript">
+
+//direction : top,left,distance: +10,-10 
+function move(direction,distance){
+	//alert("방향 :" + direction + ",거리 : " + distance );
+	var div = sel("moveDiv");
+	// 방향을 저장해놓을 변수 divInfo 선언
+	var divInfo = 0;
+	if(direction == "top") divInfo = div.offsetTop;
+	else if(direction == "left")divInfo = div.offsetLeft;
+	else {
+		alert("잘못된 방향 지정되었습니다" + direction);
+		return;
+	}
+	 // 입력된 거리만큼 더해서 moveInfo 변수에 저장하기
+	var moveInfo = divInfo + distance;
+	//alert(moveInfo);
+	
+	// 위 아래 이동 처리
+	if(direction == "top"){
+		if(moveInfo < 150) alert("더 이상 위로 이동할 수 없습니다");
+		else if (moveInfo >300 ) alert("더 이상 밑으로 이동할 수 없습니다");
+		else div.style.top = moveInfo + "px"; 
+	}
+	// 오 왼 이동 처리
+	else {
+		if(moveInfo < 10)alert("더 이상 왼쪽으로 이동할 수 없습니다");
+		else if(moveInfo > 500) alert("더 이상 오른쪽으로 이동할 수 없습니다");
+		else div.style.left = moveInfo + "px";
+	}
+}
+
+
+</script>
+</head>
+<body>
+<table>
+	<tr><td></td><td class="moveBtn" onclick="move('top',-10);">↑</td><td></td></tr>
+	<tr><td class="moveBtn" onclick="move('left',-10);">←</td><td></td>
+	<td class="moveBtn" onclick="move('left',10);">→</td></tr>
+	<tr><td></td><td class="moveBtn" onclick="move('top',10);">↓</td><td></td></tr>
+
+</table>
+<hr/>
+<div id="moveDiv"></div>
+
+
+</body>
+</html>

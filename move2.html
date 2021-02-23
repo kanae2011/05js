@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>버튼을 클릭하면 이동하는 박스 만들기</title>
+<style type="text/css">
+table {
+	font-size:1em;   /*1em:보통크기,em 배수*/
+	font-weight: 900;   /*글자의 두께:100~900*/
+	width:100px;  
+	text-align: center; /*테이블 안에 글자 가운데 정렬*/
+	margin: 0 auto; /*테이블 가운데 정렬*/
+}
+.moveBtn:hover{
+	background: black;
+	color: white;
+	cursor: pointer;
+}
+
+#moveDiv{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	/*top 속성을 가져오면 150px -> 아래를 누르면 150px+10px => 160px : 150px -> 숫자 parseInt() + 10 + "px"
+		top의 범위 : 150px ~300px / left의 범위 :10px ~ 500px 
+	*/
+	top: 150px;
+	left: 10px;
+	background: orange;
+}
+</style>
+<script type="text/javascript" src="util.js"></script>
+
+<script type="text/javascript">
+
+}
+function up() {
+	var div=sel("moveDiv");
+	
+	var divTop=div.offsetTop;//좌표의 숫자만
+	var moveTop = divTop - 10; 
+	if(moveTop < 150) alert("더 이상 올라갈 수 없습니다");
+	else div.style.top = moveTop + "px";
+}
+function left() {
+	var div=sel("moveDiv");
+	var divLeft = div.offsetLeft;
+	var moveLeft = divLeft -10;
+	if(moveLeft < 10) alert("더 이상 갈 수 없습니다")
+	else div.style.left = moveLeft + " px";
+}
+function right() {
+	var div=sel("moveDiv");
+	var divLeft = div.offsetLeft;
+	var moveLeft = divLeft +10;
+	if(moveLeft > 500) alert("더 이상 갈 수 없습니다")
+	else div.style.left = moveLeft + " px";
+}
+function down() {
+	//움직일 div 객체 선택
+	var div=sel("moveDiv");
+	var divTop=div.offsetTop;
+	//alert(divTop + "+" + typeof divTop);
+	var moveTop = divTop + 10; // top 의 설정값이 커지면 밑으로 내려간다 
+	if(moveTop > 300) alert("더 이상 내려갈 수 없습니다");
+	else div.style.top = moveTop + "px";
+}
+
+</script>
+</head>
+<body>
+<table>
+	<tr><td></td><td class="moveBtn" onclick="up();">↑</td><td></td></tr>
+	<tr><td class="moveBtn" onclick="left();">←</td><td></td>
+	<td class="moveBtn" onclick="right();">→</td></tr>
+	<tr><td></td><td class="moveBtn" onclick="down();">↓</td><td></td></tr>
+
+</table>
+<hr/>
+<div id="moveDiv"></div>
+</body>
+</html>

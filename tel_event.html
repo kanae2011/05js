@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>전화번호 입력 이벤트 처리</title>
+<script type="text/javascript">
+function to_auto_tel2() {
+	//alert("to_auto_tel2()");
+	var data=document.getElementById("tel1").value
+	//alert(data);
+	//데이터가 문자열 이거나 배열인 경우 length 속성을 이용해서 데이터의 길이를 알아낼 수 있다
+	//객체.focus(); ->커서를 객체 위치에 놓으시오 
+	if(data.length >= 3)
+		document.getElementById("tel2").focus();
+}
+function to_auto_tel3() {
+	var data=document.getElementById("tel2").value
+	if(data.length >= 4)
+		document.getElementById("tel3").focus();
+}
+//하나만 만들어두면 되는 함수 ,훨씬 용이
+function to_auto_getElementById(thisStr,nextStr,len) {
+	var data=document.getElementById(thisStr).value;
+	if(data.length >= len)
+		document.getElementById(nextStr).focus();
+}
+</script>
+</head>
+<body>
+전화번호: 
+<input maxlength="3" size="3" id="tel1" onkeyup="to_auto_tel2();">- 
+<input maxlength="4" size="4" id="tel2" onkeyup="to_auto_tel3();">- 
+<input maxlength="4" size="4" id="tel3">
+
+<!-- 만들어 두고 사용,통합  -->
+<input maxlength="3" size="3" id="tel1" onkeyup="to_auto_tel('tel1','tel2',3);">-
+<input maxlength="4" size="4" id="tel2" onkeyup="to_auto_tel('tel2','tel3',4);">-
+<input maxlength="4" size="4" id="tel3">
+</body>
+</html>

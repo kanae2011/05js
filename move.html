@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>버튼을 클릭하면 이동하는 박스 만들기</title>
+<style type="text/css">
+table {
+	font-size:1em;   /*1em:보통크기,em 배수*/
+	font-weight: 900;   /*글자의 두께:100~900*/
+	width:100px;  
+	text-align: center; /*테이블 안에 글자 가운데 정렬*/
+	margin: 0 auto; /*테이블 가운데 정렬*/
+}
+.moveBtn:hover{
+	background: black;
+	color: white;
+	cursor: pointer;
+}
+
+#moveDiv{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	/*top 속성을 가져오면 150px -> 아래를 누르면 150px+10px => 160px : 150px -> 숫자 parseInt() + 10 + "px"
+		top의 범위 : 150px ~300px / left의 범위 :10px ~ 500px 
+	*/
+	background: orange;
+}
+</style>
+<script type="text/javascript" src="util.js"></script>
+
+<script type="text/javascript">
+
+var div= null; //초기값 설정
+
+function init() { // 최초 한 번 실행  , css에서 값을 가져올 수 없으므로 js에서 설정
+	div = sel("moveDiv");
+	div.style.top= "150px";
+	div.style.left="10px";
+}
+function upBtn() {
+	if(parseInt(div.style.top) > 150 ){ 
+		div.style.top = parseInt(div.style.top) - 10 + "px"; 
+	}else{
+		alert("더 이상 움직이지 못합니다");
+	}
+}
+function leftBtn() {
+	if(parseInt(div.style.left) > 10 ){
+		div.style.left = parseInt(div.style.left) -10 +"px";		
+	}else{	
+		alert("더 이상 움직이지 못합니다");
+	}
+}
+function rightBtn() {
+	if(parseInt(div.style.left) < 500 ){
+	div.style.left = parseInt(div.style.left) + 10 +"px";
+	}else{
+		alert("더 이상 움직이지 못합니다");
+	}
+}
+function downBtn() {
+	if(parseInt(div.style.top) < 300 ){ //
+		div.style.top = parseInt(div.style.top) + 10 + "px"; //	
+	}else{
+		alert("더 이상 움직이지 못합니다");
+	}
+}
+		
+window.onload=init; // 윈도우 시작 할 때 ,init 실행 
+
+</script>
+</head>
+<body>
+<table>
+	<tr><td></td><td class="moveBtn" onclick="upBtn();">↑</td><td></td></tr>
+	<tr><td class="moveBtn" onclick="leftBtn();">←</td><td></td><td class="moveBtn" onclick="rightBtn();">→</td></tr>
+	<tr><td></td><td class="moveBtn" onclick="downBtn();">↓</td><td></td></tr>
+
+</table>
+<hr/>
+<div id="moveDiv"></div>
+</body>
+</html>

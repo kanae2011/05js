@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="util.js"></script>
+
+
+<style type="text/css">
+	div{
+		border: 1px solid #888;
+		padding: 10px;
+		margin: 10px;
+	}
+</style>
+
+<script type="text/javascript"> 
+/*---이벤트 처리 ---*/
+//점수를 모아 놓는 배열 선언
+var scores =[];
+
+
+//추가버튼 처리 함수
+function appendScore() {
+	var scoreInput = document.querySelector("#score");
+	//점수 입련란을 찾아서 값을 가져옴
+	var score = scoreInput.value;
+	//alert(score);
+	//점수 배열에 점수를 추가 시키기
+	scores.push(Number(score));
+	//alert(scores);
+	//점수 입력란 데이터 제거하고 커서를 점수 입력란에 다시 위치 시킴
+	scoreInput.value="";
+	scoreInput.focus();
+	
+	//배열을 가지고 ul태그를 만들어냄
+	var str = "";
+	var sum = 0;
+	//점수의 갯수만큼 li tag 만들어냄
+	scores.forEach(function(score){
+		//function tag(tagName,data)
+		//li tag 만들기 
+		str += tag("li",score);
+		sum += score;
+	});
+	
+	// li tag 밖에 ul tag로 감싼다
+	str = tag("ul",str);
+	//작성된 태그 표시
+	document.querySelector("#scoreList").innerHTML = str;
+	//계산된 합계를 표시
+	document.querySelector("#sum > span").innerHTML= sum;
+}
+</script>
+
+<!-- document.querySelector,innerHTML,foreach -->
+</head>
+<body>
+<div>
+	점수를 입력하세요
+	<!-- <input id= "score"/><button id="appendBtn" onclick = "appendScore();">추가</button>  -->
+	<input id= "score"/><button id="appendBtn">추가</button> 
+<div id= "scoreList">점수를 입력하세요</div>
+<div id= "sum">합계 : <span>0</span>점</div>
+<script type="text/javascript">
+document.querySelector("#appendBtn").onclick = appendScore;
+</script>
+</div>
+</body>
+</html>
